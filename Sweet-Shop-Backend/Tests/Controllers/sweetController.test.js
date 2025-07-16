@@ -104,4 +104,58 @@ describe("Sweet Controller", () => {
       expect.arrayContaining([expect.objectContaining({ name: "Rasgulla" })])
     );
   });
+
+  test("purchaseSweet: should reduce stock if available", () => {
+    sweets.push({
+      id: 12,
+      name: "Cham Cham",
+      category: "Milk",
+      price: 12,
+      quantity: 10,
+    });
+
+    req = {
+      params: { id: "12" },
+      body: { quantity: 4 },
+    };
+
+    res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    sweetController.purchaseSweet(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ message: "Purchase successful." })
+    );
+  });
+
+  test("restockSweet: should increase stock quantity", () => {
+    sweets.push({
+      id: 13,
+      name: "Kalakand",
+      category: "Milk-Based",
+      price: 20,
+      quantity: 5,
+    });
+
+    req = {
+      params: { id: "13" },
+      body: { quantity: 5 },
+    };
+
+    res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    sweetController.restockSweet(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ message: "Restock successful." })
+    );
+  });
 });

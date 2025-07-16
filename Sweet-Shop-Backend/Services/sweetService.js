@@ -50,6 +50,24 @@ class SweetService {
       return matchesName && matchesCategory && matchesPrice;
     });
   }
+
+  // Purchase sweet
+  purchaseSweet(id, quantity) {
+    const sweet = sweets.find((s) => s.id === id);
+    if (!sweet) throw new Error("Sweet not found.");
+    if (sweet.quantity < quantity)
+      throw new Error("Not enough stock available.");
+    sweet.quantity -= quantity;
+    return sweet;
+  }
+
+  // Restock sweet
+  restockSweet(id, quantity) {
+    const sweet = sweets.find((s) => s.id === id);
+    if (!sweet) throw new Error("Sweet not found.");
+    sweet.quantity += quantity;
+    return sweet;
+  }
 }
 
 module.exports = new SweetService();

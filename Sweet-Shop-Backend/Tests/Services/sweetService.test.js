@@ -101,4 +101,30 @@ describe("Sweet Service", () => {
     });
     expect(result.length).toBe(1);
   });
+
+  // For Purchase Sweet
+  test("purchaseSweet: should reduce quantity if stock is enough", () => {
+    sweetService.addSweet({
+      id: 4,
+      name: "Imarti",
+      category: "Fried",
+      price: 12,
+      quantity: 5,
+    });
+    const result = sweetService.purchaseSweet(4, 2);
+    expect(result.quantity).toBe(3);
+  });
+
+  // For Restock Sweet
+  test("restockSweet: should increase quantity", () => {
+    sweetService.addSweet({
+      id: 5,
+      name: "Jalebi",
+      category: "Fried",
+      price: 8,
+      quantity: 5,
+    });
+    const result = sweetService.restockSweet(5, 5);
+    expect(result.quantity).toBe(10);
+  });
 });

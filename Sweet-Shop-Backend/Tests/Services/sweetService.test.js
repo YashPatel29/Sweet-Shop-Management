@@ -45,4 +45,27 @@ describe("Sweet Service", () => {
     };
     expect(() => sweetService.addSweet(badSweet)).toThrow();
   });
+
+  test("getAllSweets: should return all sweets in the array", () => {
+    const sweet1 = {
+      id: 1001,
+      name: "Kalakand",
+      category: "Milk-Based",
+      price: 30,
+      quantity: 6,
+    };
+    const sweet2 = {
+      id: 1002,
+      name: "Balushahi",
+      category: "Fried",
+      price: 20,
+      quantity: 8,
+    };
+    sweetService.addSweet(sweet1);
+    sweetService.addSweet(sweet2);
+    const allSweets = sweetService.getAllSweets();
+    expect(allSweets).toHaveLength(2);
+    expect(allSweets[0].name).toBe("Kalakand");
+    expect(allSweets[1].name).toBe("Balushahi");
+  });
 });

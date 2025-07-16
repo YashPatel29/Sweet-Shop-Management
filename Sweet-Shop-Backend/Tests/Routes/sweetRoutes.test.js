@@ -7,6 +7,7 @@ describe("Sweet Routes - /api/sweets", () => {
     sweets.length = 0;
   });
 
+  // For Add Sweet
   test("POST should add a sweet and return 201", async () => {
     const sweet = {
       id: 31,
@@ -22,6 +23,7 @@ describe("Sweet Routes - /api/sweets", () => {
     expect(response.body.sweet.name).toBe("Peda");
   });
 
+  // For get all sweets
   test("GET should return list of sweets", async () => {
     await request(app).post("/api/sweets").send({
       id: 32,

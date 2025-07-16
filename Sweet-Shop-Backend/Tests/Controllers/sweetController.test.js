@@ -13,6 +13,7 @@ describe("Sweet Controller", () => {
     };
   });
 
+  // Test for add sweet
   test("should return 201 and sweet object on success", () => {
     req.body = {
       id: 21,
@@ -43,6 +44,22 @@ describe("Sweet Controller", () => {
       expect.objectContaining({
         error: expect.any(String),
       })
+    );
+  });
+
+  // Test for retrieve sweets
+  test("getAllSweets: should return all sweets", () => {
+    sweets.push({
+      id: 20,
+      name: "Kheer",
+      category: "Milk-Based",
+      price: 30,
+      quantity: 6,
+    });
+    sweetController.getAllSweets(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.arrayContaining([expect.objectContaining({ name: "Kheer" })])
     );
   });
 });

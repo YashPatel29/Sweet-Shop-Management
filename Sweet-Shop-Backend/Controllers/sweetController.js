@@ -11,3 +11,9 @@ exports.addSweet = (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+// Retrieve all sweets
+exports.getAllSweets = (req, res) => {
+  const sweets = sweetService.getAllSweets();
+  res.status(200).json(sweets);
+};

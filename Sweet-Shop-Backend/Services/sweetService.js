@@ -21,6 +21,11 @@ class SweetService {
     sweets.push(sweet);
     return sweet;
   }
+
+  // View all sweet
+  getAllSweets() {
+    return sweets;
+  }
 }
 
 module.exports = new SweetService();

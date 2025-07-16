@@ -74,10 +74,34 @@ describe("Sweet Controller", () => {
     });
     req = {
       body: {},
-      params: { id: "11" }, // ✅ FIXED HERE
+      params: { id: "11" },
       query: {},
     };
     sweetController.deleteSweet(req, res);
     expect(res.status).toHaveBeenCalledWith(200);
+  });
+
+  // For Search Sweet
+  test("searchSweets: should return matching sweets", () => {
+    sweets.push({
+      id: 21,
+      name: "Rasgulla",
+      category: "Milk-Based",
+      price: 30,
+      quantity: 5,
+    });
+    sweets.push({
+      id: 22,
+      name: "Gulab Jamun",
+      category: "Milk-Based",
+      price: 20,
+      quantity: 10,
+    });
+    req.query = { name: "rasgulla" };
+    sweetController.searchSweets(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.arrayContaining([expect.objectContaining({ name: "Rasgulla" })])
+    );
   });
 });

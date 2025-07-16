@@ -29,3 +29,9 @@ exports.deleteSweet = (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Search sweet
+exports.searchSweets = (req, res) => {
+  const results = sweetService.searchSweets(req.query);
+  res.status(200).json(results);
+};

@@ -34,6 +34,22 @@ class SweetService {
     const deleted = sweets.splice(index, 1);
     return deleted[0];
   }
+
+  // Search sweets
+  searchSweets({ name, category, minPrice, maxPrice }) {
+    return sweets.filter((s) => {
+      const matchesName = name
+        ? s.name.toLowerCase().includes(name.toLowerCase())
+        : true;
+      const matchesCategory = category
+        ? s.category.toLowerCase() === category.toLowerCase()
+        : true;
+      const matchesPrice =
+        (minPrice === undefined || s.price >= minPrice) &&
+        (maxPrice === undefined || s.price <= maxPrice);
+      return matchesName && matchesCategory && matchesPrice;
+    });
+  }
 }
 
 module.exports = new SweetService();

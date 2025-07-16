@@ -85,4 +85,20 @@ describe("Sweet Service", () => {
     expect(deleted.name).toBe("Peda");
     expect(sweets.length).toBe(0);
   });
+
+  // For Search Sweet
+  test("searchSweets: should find sweets by name and category", () => {
+    sweetService.addSweet({
+      id: 3,
+      name: "Gulab Jamun",
+      category: "Milk-Based",
+      price: 10,
+      quantity: 10,
+    });
+    const result = sweetService.searchSweets({
+      name: "gulab",
+      category: "Milk-Based",
+    });
+    expect(result.length).toBe(1);
+  });
 });

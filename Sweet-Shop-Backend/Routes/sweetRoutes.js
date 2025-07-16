@@ -7,6 +7,7 @@ router.post("/", sweetController.addSweet);
 
 // GET /api/sweets
 router.get("/", sweetController.getAllSweets);
+router.get("/search", sweetController.searchSweets);
 
 // DELETE /api/sweets
 router.delete("/:id", sweetController.deleteSweet);

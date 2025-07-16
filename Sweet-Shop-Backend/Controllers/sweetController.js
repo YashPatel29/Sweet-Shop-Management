@@ -12,8 +12,20 @@ exports.addSweet = (req, res) => {
   }
 };
 
-// Retrieve all sweets
+// Get all sweets
 exports.getAllSweets = (req, res) => {
   const sweets = sweetService.getAllSweets();
   res.status(200).json(sweets);
+};
+
+// Remove sweet
+exports.deleteSweet = (req, res) => {
+  try {
+    const deleted = sweetService.deleteSweet(parseInt(req.params.id));
+    res
+      .status(200)
+      .json({ message: "Sweet deleted successfully.", sweet: deleted });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
 };

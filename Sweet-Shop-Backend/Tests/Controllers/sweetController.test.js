@@ -47,7 +47,7 @@ describe("Sweet Controller", () => {
     );
   });
 
-  // Test for retrieve sweets
+  // Test for get all sweets
   test("getAllSweets: should return all sweets", () => {
     sweets.push({
       id: 20,
@@ -61,5 +61,23 @@ describe("Sweet Controller", () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.arrayContaining([expect.objectContaining({ name: "Kheer" })])
     );
+  });
+
+  // For Remove Sweet
+  test("deleteSweet: should return 200 if deleted", () => {
+    sweets.push({
+      id: 11,
+      name: "Halwa",
+      category: "Vegetable",
+      price: 10,
+      quantity: 5,
+    });
+    req = {
+      body: {},
+      params: { id: "11" }, // ✅ FIXED HERE
+      query: {},
+    };
+    sweetController.deleteSweet(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
   });
 });

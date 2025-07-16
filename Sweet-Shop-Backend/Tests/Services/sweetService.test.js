@@ -6,6 +6,7 @@ describe("Sweet Service", () => {
     sweets.length = 0;
   });
 
+  // For Add sweet
   test("should add a valid sweet", () => {
     const sweet = {
       id: 10,
@@ -46,6 +47,7 @@ describe("Sweet Service", () => {
     expect(() => sweetService.addSweet(badSweet)).toThrow();
   });
 
+  // For Add All Sweet
   test("getAllSweets: should return all sweets in the array", () => {
     const sweet1 = {
       id: 1001,
@@ -67,5 +69,20 @@ describe("Sweet Service", () => {
     expect(allSweets).toHaveLength(2);
     expect(allSweets[0].name).toBe("Kalakand");
     expect(allSweets[1].name).toBe("Balushahi");
+  });
+
+  // For Delete Sweet
+  test("deleteSweet: should remove existing sweet", () => {
+    const sweet = {
+      id: 2,
+      name: "Peda",
+      category: "Milk",
+      price: 15,
+      quantity: 10,
+    };
+    sweetService.addSweet(sweet);
+    const deleted = sweetService.deleteSweet(2);
+    expect(deleted.name).toBe("Peda");
+    expect(sweets.length).toBe(0);
   });
 });

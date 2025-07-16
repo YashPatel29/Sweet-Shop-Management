@@ -37,4 +37,20 @@ describe("Sweet Routes - /api/sweets", () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.length).toBeGreaterThan(0);
   });
+
+  // For Remove Sweet
+  test("DELETE /api/sweets/:id should delete sweet", async () => {
+    await request(app)
+      .post("/api/sweets")
+      .send({
+        id: 200,
+        name: "Sandesh",
+        category: "Milk",
+        price: 20,
+        quantity: 5,
+      });
+    const res = await request(app).delete("/api/sweets/200");
+    expect(res.statusCode).toBe(200);
+    expect(res.body.message).toMatch(/deleted/i);
+  });
 });

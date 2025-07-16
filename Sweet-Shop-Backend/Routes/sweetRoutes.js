@@ -8,4 +8,7 @@ router.post("/", sweetController.addSweet);
 // GET /api/sweets
 router.get("/", sweetController.getAllSweets);
 
+// DELETE /api/sweets
+router.delete("/:id", sweetController.deleteSweet);
+
 module.exports = router;

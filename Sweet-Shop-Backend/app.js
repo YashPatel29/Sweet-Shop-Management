@@ -3,6 +3,11 @@ const sweetRoutes = require("./routes/sweetRoutes");
 
 const app = express();
 
+const cors = require("cors");
+
+// Middleware : For cors
+app.use(cors());
+
 // Middleware: Parses incoming JSON requests
 app.use(express.json());
 
